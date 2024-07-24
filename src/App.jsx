@@ -4,7 +4,7 @@ import Table from "./components/Table";
 import "./App.css";
 
 function App() {
-  const { columns, data: initialData } = generateMockData(10);
+  const { columns, data: initialData } = generateMockData(1000);
   const [data, setData] = useState(initialData);
 
   const handleUpdate = (rowId, columnId, value) => {

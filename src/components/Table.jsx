@@ -4,9 +4,13 @@ import { useState } from "react";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 import ColumnVisibilityToggle from "./ColumnVisibilityToggle";
+import TablePagination from "./TablePagination";
 
 const Table = ({ columns, data, updateData }) => {
   const [hiddenColumns, setHiddenColumns] = useState([]);
+  const [page, setPage] = useState(1);
+  const rowsPerPage = 10;
+  const totalPages = Math.ceil(data.length / rowsPerPage);
 
   const toggleHideColumn = (columnId) => {
     setHiddenColumns((prev) =>
@@ -20,6 +24,11 @@ const Table = ({ columns, data, updateData }) => {
     (column) => !hiddenColumns.includes(column.id)
   );
 
+  const currentPageData = data.slice(
+    (page - 1) * rowsPerPage,
+    page * rowsPerPage
+  );
+
   return (
     <>
       <ColumnVisibilityToggle
@@ -27,10 +36,10 @@ const Table = ({ columns, data, updateData }) => {
         hiddenColumns={hiddenColumns}
         toggleHideColumn={toggleHideColumn}
       />
-      <table>
+      <table border="full">
         <TableHeader columns={visibleColumns} />
         <tbody>
-          {data.map((row) => (
+          {currentPageData.map((row) => (
             <tr key={row.id}>
               <TableRow
                 row={row}
@@ -41,6 +50,7 @@ const Table = ({ columns, data, updateData }) => {
           ))}
         </tbody>
       </table>
+      <TablePagination page={page} totalPages={totalPages} setPage={setPage} />
     </>
   );
 };
