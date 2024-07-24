@@ -1,35 +1,26 @@
 /* eslint-disable react/prop-types */
 
-import Cell from "./Cell";
+import TableHeader from "./TableHeader";
+import TableRow from "./TableRow";
 
-export default function Table({ columns, rows, onModification }) {
-  const handleChange = (change) => {
-    onModification(change);
-  };
-
+const Table = ({ columns, data, updateData }) => {
   return (
-    <table border={1}>
-      <thead>
-        <tr>
-          {columns.map((col) => (
-            <th key={col.id}>{col.title}</th>
+    <>
+      <table>
+        <TableHeader columns={columns} />
+        <tbody>
+          {data.map((row) => (
+            <TableRow
+              key={row.id}
+              row={row}
+              columns={columns}
+              updateData={updateData}
+            />
           ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row) => (
-          <tr key={row.id}>
-            {columns.map((col) => (
-              <Cell
-                key={row.id + col.id}
-                data={row[col.id]}
-                type={col.type}
-                onChange={handleChange}
-              />
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </>
   );
-}
+};
+
+export default Table;
