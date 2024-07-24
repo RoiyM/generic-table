@@ -7,11 +7,15 @@ function App() {
   const { columns, data: initialData } = generateMockData(10);
   const [data, setData] = useState(initialData);
 
-  const handleUpdate = (rowIndex, columnId, value) => {
+  const handleUpdate = (rowId, columnId, value) => {
     setData((prev) =>
-      prev.map((row, index) =>
-        index === rowIndex ? { ...row, [columnId]: value } : row
-      )
+      prev.map((row) => {
+        if (row.id === rowId) {
+          return { ...row, [columnId]: value };
+        } else {
+          return row;
+        }
+      })
     );
   };
 

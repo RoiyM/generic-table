@@ -1,25 +1,22 @@
 /* eslint-disable react/prop-types */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Input from "./Input";
 
-const EditableCell = ({
-  value: initialValue,
-  row: { index },
-  column: { id },
-  updateData,
-  type,
-  options,
-}) => {
-  const [value, setValue] = useState(initialValue);
-
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+const EditableCell = ({ value, row, column, updateData, type, options }) => {
+  const [isEdited, setIsEdited] = useState(false);
 
   const onChange = (e) => {
-    const newValue = type === "boolean" ? e.target.checked : e.target.value;
-    setValue(newValue);
-    updateData(index, id, newValue);
+    let newValue;
+    if (type === "string" || type === "number") {
+      newValue = e;
+      setIsEdited(false);
+    } else if (type === "boolean") {
+      newValue = e.target.checked;
+    } else {
+      newValue = e.target.value;
+    }
+    updateData(row, column, newValue);
   };
 
   if (type === "boolean") {
@@ -35,9 +32,26 @@ const EditableCell = ({
       </select>
     );
   } else if (type === "number") {
-    return <input type="number" value={value} onChange={onChange} />;
+    return isEdited ? (
+      <Input
+        value={value}
+        onSave={onChange}
+        onCancel={() => setIsEdited(false)}
+        type={type}
+      />
+    ) : (
+      <span onClick={() => setIsEdited(true)}>{value}</span>
+    );
   } else {
-    return <input value={value} onChange={onChange} />;
+    return isEdited ? (
+      <Input
+        value={value}
+        onSave={onChange}
+        onCancel={() => setIsEdited(false)}
+      />
+    ) : (
+      <span onClick={() => setIsEdited(true)}>{value}</span>
+    );
   }
 };
 

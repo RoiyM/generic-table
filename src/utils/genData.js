@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 const generateMockData = (length) => {
   const columns = [
     { id: "name", ordinalNo: 1, title: "Name", type: "string" },
-    { id: "age", ordinalNo: 2, title: "Age", type: "number" },
+    { id: "age", ordinalNo: 2, title: "Age", type: "number", width: 100 },
     { id: "isActive", ordinalNo: 3, title: "Active", type: "boolean" },
     {
       id: "role",
