@@ -5,25 +5,24 @@ import Input from "./Input";
 
 const EditableCell = ({ value, row, column, updateData, type, options }) => {
   const [isEdited, setIsEdited] = useState(false);
-
-  const onChange = (e) => {
-    let newValue;
+  const onChange = (newValue) => {
     if (type === "string" || type === "number") {
-      newValue = e;
       setIsEdited(false);
-    } else if (type === "boolean") {
-      newValue = e.target.checked;
-    } else {
-      newValue = e.target.value;
     }
     updateData(row, column, newValue);
   };
 
   if (type === "boolean") {
-    return <input type="checkbox" checked={value} onChange={onChange} />;
+    return (
+      <input
+        type="checkbox"
+        checked={value}
+        onChange={(e) => onChange(e.target.checked)}
+      />
+    );
   } else if (type === "selection") {
     return (
-      <select value={value} onChange={onChange}>
+      <select value={value} onChange={(e) => onChange(e.target.value)}>
         {options.map((option) => (
           <option key={option} value={option}>
             {option}

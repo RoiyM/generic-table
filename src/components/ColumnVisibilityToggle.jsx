@@ -8,7 +8,7 @@ const ColumnVisibilityToggle = ({
 }) => {
   const [visibility, setVisibility] = useState(false);
   return (
-    <div className="padding-10">
+    <div className="column-visibility-toggle">
       <button onClick={() => setVisibility(!visibility)}>Filter Columns</button>
 
       {visibility &&

@@ -8,7 +8,7 @@ import TablePagination from "./TablePagination";
 
 const Table = ({ columns, data, updateData }) => {
   const [hiddenColumns, setHiddenColumns] = useState([]);
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10;
   const totalPages = Math.ceil(data.length / rowsPerPage);
 
@@ -25,8 +25,8 @@ const Table = ({ columns, data, updateData }) => {
   );
 
   const currentPageData = data.slice(
-    (page - 1) * rowsPerPage,
-    page * rowsPerPage
+    (currentPage - 1) * rowsPerPage,
+    currentPage * rowsPerPage
   );
 
   return (
@@ -36,7 +36,7 @@ const Table = ({ columns, data, updateData }) => {
         hiddenColumns={hiddenColumns}
         toggleHideColumn={toggleHideColumn}
       />
-      <div>
+      <div className="table-container">
         <table border="full">
           <TableHeader columns={visibleColumns} />
           <tbody>
@@ -52,9 +52,9 @@ const Table = ({ columns, data, updateData }) => {
           </tbody>
         </table>
         <TablePagination
-          page={page}
+          currentPage={currentPage}
           totalPages={totalPages}
-          setPage={setPage}
+          setCurrentPage={setCurrentPage}
         />
       </div>
     </div>
