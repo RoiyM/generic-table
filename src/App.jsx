@@ -9,13 +9,9 @@ function App() {
 
   const handleUpdate = (rowId, columnId, value) => {
     setData((prev) =>
-      prev.map((row) => {
-        if (row.id === rowId) {
-          return { ...row, [columnId]: value };
-        } else {
-          return row;
-        }
-      })
+      prev.map((row) =>
+        row.id === rowId ? { ...row, [columnId]: value } : row
+      )
     );
   };
 
