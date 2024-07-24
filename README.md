@@ -10,7 +10,6 @@ This project is a generic table component built using React and Vite. It support
 - [Components](#components)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -47,7 +46,7 @@ This project is a generic table component built using React and Vite. It support
 
 ## Usage
 
-After starting the development server, you can view the project in your browser at `http://localhost:3000`.
+After starting the development server, you can view the project in your browser at `http://localhost:{port}`.
 
 ## Components
 
@@ -106,10 +105,3 @@ src/
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to adjust any section as needed!
