@@ -13,9 +13,12 @@ const TablePagination = ({ page, totalPages, setPage }) => {
     if (newPage >= 1 && newPage <= totalPages) setPage(newPage);
   };
   return (
-    <div>
+    <div className="padding-10">
+      <button onClick={() => setPage(1)} disabled={page === 1}>
+        Start
+      </button>
       <button onClick={handlePrevious} disabled={page === 1}>
-        Previous
+        ⬅️ Previous
       </button>
       <span>
         Page{" "}
@@ -29,7 +32,13 @@ const TablePagination = ({ page, totalPages, setPage }) => {
         of {totalPages}
       </span>
       <button onClick={handleNext} disabled={page === totalPages}>
-        Next
+        Next ➡️
+      </button>
+      <button
+        onClick={() => setPage(totalPages)}
+        disabled={page === totalPages}
+      >
+        End
       </button>
     </div>
   );

@@ -3,8 +3,9 @@ import generateMockData from "./utils/genData";
 import Table from "./components/Table";
 import "./App.css";
 
+const { columns, data: initialData } = generateMockData(975);
+
 function App() {
-  const { columns, data: initialData } = generateMockData(1000);
   const [data, setData] = useState(initialData);
 
   const handleUpdate = (rowId, columnId, value) => {

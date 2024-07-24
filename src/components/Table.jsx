@@ -30,28 +30,34 @@ const Table = ({ columns, data, updateData }) => {
   );
 
   return (
-    <>
+    <div className="container">
       <ColumnVisibilityToggle
         columns={columns}
         hiddenColumns={hiddenColumns}
         toggleHideColumn={toggleHideColumn}
       />
-      <table border="full">
-        <TableHeader columns={visibleColumns} />
-        <tbody>
-          {currentPageData.map((row) => (
-            <tr key={row.id}>
-              <TableRow
-                row={row}
-                columns={visibleColumns}
-                updateData={updateData}
-              />
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <TablePagination page={page} totalPages={totalPages} setPage={setPage} />
-    </>
+      <div>
+        <table border="full">
+          <TableHeader columns={visibleColumns} />
+          <tbody>
+            {currentPageData.map((row) => (
+              <tr key={row.id}>
+                <TableRow
+                  row={row}
+                  columns={visibleColumns}
+                  updateData={updateData}
+                />
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <TablePagination
+          page={page}
+          totalPages={totalPages}
+          setPage={setPage}
+        />
+      </div>
+    </div>
   );
 };
 

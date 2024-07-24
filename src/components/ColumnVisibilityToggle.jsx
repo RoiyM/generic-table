@@ -8,12 +8,12 @@ const ColumnVisibilityToggle = ({
 }) => {
   const [visibility, setVisibility] = useState(false);
   return (
-    <div>
+    <div className="padding-10">
       <button onClick={() => setVisibility(!visibility)}>Filter Columns</button>
 
       {visibility &&
         columns.map((column) => (
-          <div key={column.id}>
+          <div className="container" key={column.id}>
             <label>
               <input
                 type="checkbox"
