@@ -85,7 +85,7 @@ src/
     TableRow.jsx
     ColumnVisibilityToggle.jsx
     Pagination.jsx
-  data/
+  utils/
     generateData.js
   App.jsx
   main.jsx
