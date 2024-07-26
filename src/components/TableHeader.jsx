@@ -4,15 +4,14 @@ const TableHeader = ({ columns }) => {
   return (
     <thead>
       <tr>
-        {columns.map((column) =>
-          column.width ? (
-            <th key={column.id} style={{ width: `${column.width}px` }}>
+        {columns.map((column) => {
+          const style = column.width ? { width: column.width } : null;
+          return (
+            <th key={column.id} style={style}>
               {column.title}
             </th>
-          ) : (
-            <th key={column.id}>{column.title}</th>
-          )
-        )}
+          );
+        })}
       </tr>
     </thead>
   );
